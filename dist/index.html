@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+  <meta name="theme-color" content="#f7c85f">
+  <meta name="description" content="卡皮巴拉九九乘法大挑戰">
+  <title>卡皮巴拉乘法村</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main id="app" aria-live="polite">
+    <section id="map-screen" class="screen active" aria-label="卡皮巴拉村主地圖">
+      <div class="map-scene">
+        <header class="brand-card">
+          <span class="brand-kicker">CAPYBARA MATH VILLAGE</span>
+          <h1>卡皮巴拉乘法村</h1>
+          <p>敲出正確答案，完成九九乘法挑戰！</p>
+        </header>
+        <button id="level-gate" class="level-gate" type="button" aria-label="進入第一關">
+          <span class="level-badge">1</span>
+          <strong>花田練習場</strong>
+          <small>答對 10 題即可過關</small>
+        </button>
+        <button id="npc" class="npc" type="button" aria-label="和卡皮老師交談">
+          <img src="assets/npc-teacher.png" alt="戴草帽的卡皮巴拉老師">
+          <span class="talk-bubble">先聽我說明吧！</span>
+        </button>
+        <div class="map-tip">點擊卡皮老師或第一關入口</div>
+      </div>
+    </section>
+
+    <section id="game-screen" class="screen" aria-label="九九乘法關卡">
+      <div class="game-scene">
+        <header class="hud">
+          <div class="hud-pill timer-pill"><span aria-hidden="true">⏱</span><strong id="timer">80</strong></div>
+          <div class="question-board" id="question">7 × 8 = ?</div>
+          <div class="hud-pill score-pill"><span class="mini-capy">●</span><strong id="score">0/10</strong></div>
+          <div class="hearts" id="hearts" aria-label="剩餘五滴血">♥♥♥♥♥</div>
+          <button id="sound-btn" class="icon-btn" type="button" aria-label="切換音效">🔊</button>
+          <button id="pause-btn" class="icon-btn" type="button" aria-label="暫停遊戲">Ⅱ</button>
+        </header>
+        <div class="field" id="field" aria-label="九個卡皮巴拉洞口"></div>
+        <div class="combo" id="combo" aria-hidden="true"></div>
+      </div>
+    </section>
+  </main>
+
+  <div id="dialog" class="modal-backdrop" hidden>
+    <section class="dialog-card" role="dialog" aria-modal="true" aria-labelledby="dialog-title">
+      <img class="dialog-portrait" src="assets/npc-teacher.png" alt="卡皮老師">
+      <div class="dialog-copy">
+        <span class="dialog-name">卡皮老師</span>
+        <h2 id="dialog-title">歡迎來到花田練習場！</h2>
+        <p>看上方的乘法題，敲下拿著正確答案牌的卡皮巴拉。答錯會失去一顆愛心；在 80 秒內答對 10 題就過關！</p>
+        <div class="dialog-rules">
+          <span>⏱ 80 秒</span><span>★ 10 題</span><span>♥ 5 次機會</span>
+        </div>
+        <button id="start-btn" class="primary-btn" type="button">拿起玩具槌開始！</button>
+      </div>
+    </section>
+  </div>
+
+  <div id="countdown" class="countdown" hidden aria-live="assertive">3</div>
+
+  <div id="result" class="modal-backdrop" hidden>
+    <section class="result-card" role="dialog" aria-modal="true" aria-labelledby="result-title">
+      <div id="result-capy" class="result-capy">🌟</div>
+      <h2 id="result-title">挑戰成功！</h2>
+      <p id="result-message"></p>
+      <div class="result-stats">
+        <span>答對<strong id="result-score">10</strong>題</span>
+        <span>剩餘<strong id="result-time">24</strong>秒</span>
+      </div>
+      <div class="result-actions">
+        <button id="retry-btn" class="primary-btn" type="button">再玩一次</button>
+        <button id="home-btn" class="secondary-btn" type="button">回主地圖</button>
+      </div>
+    </section>
+  </div>
+
+  <div id="pause-modal" class="modal-backdrop" hidden>
+    <section class="pause-card" role="dialog" aria-modal="true" aria-labelledby="pause-title">
+      <h2 id="pause-title">遊戲暫停</h2>
+      <p>深呼吸一下，準備好再繼續！</p>
+      <button id="resume-btn" class="primary-btn" type="button">繼續遊戲</button>
+      <button id="quit-btn" class="secondary-btn" type="button">回主地圖</button>
+    </section>
+  </div>
+
+  <div class="rotate-notice" aria-hidden="true">
+    <div>↻</div><strong>請將裝置轉為橫向</strong><span>橫向遊玩會更舒服</span>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>
